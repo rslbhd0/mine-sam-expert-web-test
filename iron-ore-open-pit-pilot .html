@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>APR-02 | پایلوت هزینه استخراج سنگ‌آهن روباز</title>
+<style>
+:root{--bg:#07101d;--panel:#0f1b2f;--panel2:#13223b;--line:#2a3c5e;--text:#eef5ff;--muted:#a8b7d1;--blue:#4f7cff;--green:#46d39a;--amber:#f6c85f;--red:#ff7180;--ink:#06101d;font-family:Tahoma,Arial,sans-serif;color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#07101d,#091426 45%,#06101c);color:var(--text)}.wrap{max-width:1280px;margin:auto;padding:20px}.hero,.panel{background:rgba(15,27,47,.96);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 10px 30px rgba(0,0,0,.16)}.hero h1{font-size:27px;margin:8px 0}.muted{color:var(--muted);line-height:1.9}.badge{display:inline-block;background:#22385f;color:#dce8ff;border-radius:999px;padding:6px 11px;font-size:12px;margin-left:5px}.warn{background:#33270f;border:1px solid #80631c;color:#ffe6a0;padding:12px;border-radius:12px;line-height:1.8;margin-top:12px}.okbox{background:#0e2a24;border:1px solid #235e4f;color:#bdf4de;padding:12px;border-radius:12px}.nav{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.nav a{color:#dce8ff;background:#132a4b;text-decoration:none;padding:8px 11px;border-radius:10px;border:1px solid #274466;font-size:12px}h2{font-size:19px;margin:0 0 13px}h3{font-size:15px;color:#d8e4ff;margin:10px 0}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.full{grid-column:1/-1}label{display:block;font-size:12px;color:#c5d2e9}input,select,textarea,button{width:100%;margin-top:5px;border-radius:10px;border:1px solid #355078;background:#091426;color:#fff;padding:10px;font:inherit}input:focus,select:focus,textarea:focus{outline:2px solid #4f7cff55;border-color:var(--blue)}button{cursor:pointer;background:#315ee8;border:none;font-weight:700}.secondary{background:#243857}.green{background:#16845f}.danger{background:#8b3342}.small{font-size:11px;color:#8fa2c1}.section-note{font-size:11px;color:#8fa2c1;margin-top:8px;line-height:1.7}.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.kpi{background:#0a1528;border:1px solid #2b3d5d;border-radius:14px;padding:13px}.kpi .v{font-size:20px;font-weight:800;margin-top:6px;direction:ltr;text-align:right}.kpi .l{font-size:11px;color:#9fb0cb}.tablewrap{overflow:auto;border:1px solid #293b5b;border-radius:12px}table{border-collapse:collapse;width:100%;min-width:780px;background:#0a1528}th,td{padding:9px;border-bottom:1px solid #223553;text-align:right;font-size:12px}th{background:#13223b;color:#dce8ff;position:sticky;top:0}td.num{direction:ltr;text-align:left;font-family:Consolas,monospace}.status{font-size:16px;font-weight:800}.pass{color:var(--green)}.hold{color:var(--amber)}.fail{color:var(--red)}.bar{height:10px;background:#172641;border-radius:20px;overflow:hidden}.bar>i{display:block;height:100%;background:#4f7cff}.sensrow{display:grid;grid-template-columns:180px 1fr 120px 120px;gap:8px;align-items:center;margin:8px 0}.sourcebox{border:1px dashed #3a527a;border-radius:12px;padding:11px;background:#0b172b}.actions{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.pill{display:inline-block;padding:4px 8px;border-radius:999px;font-size:10px;background:#243857;color:#d9e5f8}.pill.scenario{background:#4b3b14;color:#ffe7a0}.pill.verified{background:#123d31;color:#baf0db}.footer{text-align:center;color:#7f94b5;font-size:11px;padding:15px}.ltr{direction:ltr;text-align:left}.hidden{display:none}@media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr 1fr}.kpis{grid-template-columns:repeat(2,1fr)}.actions{grid-template-columns:1fr 1fr}.sensrow{grid-template-columns:1fr}.wrap{padding:10px}}@media(max-width:600px){.grid,.grid3,.grid2{grid-template-columns:1fr}.kpis,.actions{grid-template-columns:1fr}.hero h1{font-size:21px}.full{grid-column:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="hero">
+<span class="badge">APR-02 · MINE SAM EXPERT</span><span class="badge">Pilot v0.2</span><span class="badge">Open-Pit Iron Ore</span>
+<h1>پایلوت برآورد هزینه استخراج سنگ‌آهن از معدن روباز</h1>
+<div class="muted">مدل تعاملی برای تست معماری داده، محاسبه فنی هزینه استخراج، تعیین ناوگان تقریبی، کنترل منشأ نرخ‌ها و تحلیل حساسیت. همه محاسبات در مرورگر انجام می‌شود و داده‌ای به سرور ارسال نمی‌گردد.</div>
+<div class="warn"><b>مرز استفاده:</b> نرخ‌های اولیه این پایلوت «سناریویی و ساختگی برای تست نرم‌افزار» هستند. خروجی، قیمت رسمی/بازاری، نظریه کارشناسی، طراحی آتشباری یا تأیید ایمنی نیست. برای کاربرد واقعی باید داده‌های معدن، نرخ‌های معتبر تاریخ‌دار و بازبینی مهندسی جایگزین شوند.</div>
+<div class="nav"><a href="#identity">۱. پرونده و مجوز</a><a href="#production">۲. زمین‌شناسی و تولید</a><a href="#pit">۳. پیت و راه</a><a href="#db">۴. حفاری/آتشباری</a><a href="#load">۵. بارگیری</a><a href="#haul">۶. حمل</a><a href="#support">۷. خدمات و هزینه ثابت</a><a href="#rates">۸. نرخ و منبع</a><a href="#results">۹. خروجی</a><a href="#sensitivity">۱۰. حساسیت</a></div>
+</section>
+
+<section class="panel" id="identity"><h2>۱) شناسنامه پروژه، مجوز و مسیر ورود داده</h2>
+<div class="grid">
+<label>نام پروژه<input id="projectName" value="پایلوت معدن سنگ‌آهن روباز - سناریو ۱"></label>
+<label>استان<select id="province"><option>کرمان</option><option>یزد</option><option>خراسان رضوی</option><option>اصفهان</option><option>آذربایجان شرقی</option><option>سایر</option></select></label>
+<label>نوع مجوز<select id="permitType"><option>پروانه بهره‌برداری</option><option>گواهی کشف</option><option>پروانه اکتشاف</option><option>طرح بهره‌برداری</option><option>قرارداد استخراج</option></select></label>
+<label>شماره مجوز/مرجع<input id="permitNo" value="PILOT-PERMIT-001"></label>
+<label>تاریخ مجوز<input id="permitDate" type="date" value="2026-01-01"></label>
+<label>روش ورود داده<select id="inputMode"><option value="manual">ورود دستی هدایت‌شده</option><option value="document">بارگذاری سند - شبیه‌سازی مسیر AI</option></select></label>
+<label>نوع سند مبنا<select id="documentType"><option>طرح بهره‌برداری</option><option>پروانه بهره‌برداری</option><option>گزارش مسئول فنی</option><option>قرارداد پیمانکاری</option><option>گزارش تولید</option></select></label>
+<label>صفحه/بخش مرجع<input id="sourcePage" value="سناریو / بدون سند واقعی"></label>
+<div class="full sourcebox" id="docBox"><b>بارگذاری سند برای نمایش مسیر آینده AI</b><br><span class="small">در این نسخه استاتیک، فایل فقط روی دستگاه شما انتخاب می‌شود و پردازش/آپلود نمی‌شود.</span><input id="docFile" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png"></div>
+</div></section>
+
+<section class="panel" id="production"><h2>۲) زمین‌شناسی، ماده معدنی و برنامه تولید</h2>
+<div class="grid">
+<label>نوع سنگ‌آهن<select id="oreType"><option>مگنتیتی</option><option>هماتیتی</option><option>مگنتیت-هماتیت مختلط</option><option>گوتیتی/لیمونیتی</option></select></label>
+<label>عیار متوسط Fe (%)<input id="oreGrade" type="number" step="0.1" value="55"></label>
+<label>چگالی درجا کانسنگ (t/m³)<input id="oreDensity" type="number" step="0.01" value="3.40"></label>
+<label>چگالی درجا باطله (t/m³)<input id="wasteDensity" type="number" step="0.01" value="2.65"></label>
+<label>رطوبت متوسط (%)<input id="moisture" type="number" step="0.1" value="3"></label>
+<label>تولید سالانه کانسنگ (t/y)<input id="oreTpy" type="number" step="1000" value="2000000"></label>
+<label>نسبت باطله‌برداری (t waste / t ore)<input id="stripRatio" type="number" step="0.05" value="1.50"></label>
+<label>روز کاری سالانه<input id="days" type="number" value="330"></label>
+<label>شیفت در روز<input id="shifts" type="number" value="3"></label>
+<label>ساعت هر شیفت<input id="hoursShift" type="number" step="0.5" value="8"></label>
+<label>بازیابی استخراجی (%)<input id="miningRecovery" type="number" step="0.1" value="97"></label>
+<label>رقیق‌شدگی (%)<input id="dilution" type="number" step="0.1" value="5"></label>
+</div><div class="section-note">در این پایلوت نسبت باطله بر مبنای تناژ تعریف شده است. در نسخه اصلی، انتخاب t/t، m³/t و m³/m³ و تبدیل واحد خودکار پیش‌بینی می‌شود.</div></section>
+
+<section class="panel" id="pit"><h2>۳) هندسه پیت، پله و راه‌های معدنی</h2>
+<div class="grid">
+<label>ارتفاع پله (m)<input id="benchHeight" type="number" step="0.5" value="10"></label>
+<label>عمق متوسط/مؤثر پیت (m)<input id="pitDepth" type="number" step="5" value="120"></label>
+<label>شیب متوسط رمپ (%)<input id="rampGrade" type="number" step="0.5" value="8"></label>
+<label>مقاومت غلتشی (%)<input id="rollingResistance" type="number" step="0.1" value="2.5"></label>
+<label>فاصله یک‌طرفه حمل کانسنگ (km)<input id="oreHaulKm" type="number" step="0.1" value="2.0"></label>
+<label>فاصله یک‌طرفه حمل باطله (km)<input id="wasteHaulKm" type="number" step="0.1" value="3.5"></label>
+<label>عرض راه اصلی (m)<input id="roadWidth" type="number" step="0.5" value="22"></label>
+<label>ضریب شرایط راه<select id="roadFactor"><option value="1">عادی (1.00)</option><option value="1.08" selected>متوسط/ناهموار (1.08)</option><option value="1.18">نامناسب (1.18)</option></select></label>
+</div></section>
+
+<section class="panel" id="db"><h2>۴) حفاری و آتشباری</h2>
+<div class="grid">
+<label>قطر چال (mm)<input id="drillDiameter" type="number" value="165"></label>
+<label>بردن Burden (m)<input id="burden" type="number" step="0.1" value="4.0"></label>
+<label>فاصله Spacing (m)<input id="spacing" type="number" step="0.1" value="4.5"></label>
+<label>حفاری اضافه Subdrill (m)<input id="subdrill" type="number" step="0.1" value="1.0"></label>
+<label>نرخ نفوذ دستگاه (m/h)<input id="drillPenetration" type="number" step="0.5" value="18"></label>
+<label>Availability حفاری (%)<input id="drillAvail" type="number" step="1" value="85"></label>
+<label>Utilization حفاری (%)<input id="drillUtil" type="number" step="1" value="75"></label>
+<label>مصرف سوخت حفار (L/h)<input id="drillFuel" type="number" step="1" value="45"></label>
+<label>تعمیرات حفار (IRR/h)<input id="drillMaint" type="number" step="10000" value="2000000"></label>
+<label>اپراتور حفار (IRR/h)<input id="drillLabor" type="number" step="10000" value="800000"></label>
+<label>هزینه مالکیت سالانه هر حفار (IRR/y)<input id="drillOwnership" type="number" step="1000000000" value="60000000000"></label>
+<label>Powder Factor کانسنگ (kg/t)<input id="pfOre" type="number" step="0.01" value="0.35"></label>
+<label>Powder Factor باطله (kg/t)<input id="pfWaste" type="number" step="0.01" value="0.28"></label>
+<label>هزینه ملحقات انفجار (IRR/t blasted)<input id="blastAccessories" type="number" step="1000" value="60000"></label>
+<label>خرج‌گذاری/خدمات انفجار (IRR/t blasted)<input id="chargingRate" type="number" step="1000" value="40000"></label>
+<label>ضریب اصلاح خردایش/حفاری<input id="drillBlastFactor" type="number" step="0.01" value="1.00"></label>
+</div></section>
+
+<section class="panel" id="load"><h2>۵) بارگیری</h2>
+<div class="grid">
+<label>نوع بارکن<select id="loaderType"><option>شاول/بیل هیدرولیکی</option><option>لودر چرخ لاستیکی</option></select></label>
+<label>ظرفیت جام (m³)<input id="bucket" type="number" step="0.1" value="8"></label>
+<label>ضریب پرشدگی جام<input id="fillFactor" type="number" step="0.01" value="0.90"></label>
+<label>زمان سیکل بارکن (s)<input id="loaderCycle" type="number" step="1" value="32"></label>
+<label>Availability بارکن (%)<input id="loaderAvail" type="number" value="90"></label>
+<label>Utilization بارکن (%)<input id="loaderUtil" type="number" value="80"></label>
+<label>مصرف سوخت بارکن (L/h)<input id="loaderFuel" type="number" value="70"></label>
+<label>تعمیرات بارکن (IRR/h)<input id="loaderMaint" type="number" step="10000" value="3500000"></label>
+<label>اپراتور بارکن (IRR/h)<input id="loaderLabor" type="number" step="10000" value="900000"></label>
+<label>هزینه مالکیت سالانه هر بارکن (IRR/y)<input id="loaderOwnership" type="number" step="1000000000" value="90000000000"></label>
+</div></section>
+
+<section class="panel" id="haul"><h2>۶) باربری کامیونی</h2>
+<div class="grid">
+<label>ظرفیت اسمی کامیون (t)<input id="truckPayload" type="number" step="1" value="60"></label>
+<label>ضریب Payload<input id="payloadFactor" type="number" step="0.01" value="0.95"></label>
+<label>سرعت پر کانسنگ (km/h)<input id="oreLoadedSpeed" type="number" value="25"></label>
+<label>سرعت خالی کانسنگ (km/h)<input id="oreEmptySpeed" type="number" value="35"></label>
+<label>سرعت پر باطله (km/h)<input id="wasteLoadedSpeed" type="number" value="22"></label>
+<label>سرعت خالی باطله (km/h)<input id="wasteEmptySpeed" type="number" value="32"></label>
+<label>زمان بارگیری هر کامیون (min)<input id="truckLoadMin" type="number" step="0.1" value="3.0"></label>
+<label>تخلیه/مانور (min)<input id="dumpMin" type="number" step="0.1" value="1.5"></label>
+<label>صف/تأخیر متوسط (min)<input id="queueMin" type="number" step="0.1" value="2.0"></label>
+<label>Availability کامیون (%)<input id="truckAvail" type="number" value="88"></label>
+<label>Utilization کامیون (%)<input id="truckUtil" type="number" value="78"></label>
+<label>مصرف سوخت کامیون (L/h)<input id="truckFuel" type="number" value="55"></label>
+<label>تعمیرات کامیون (IRR/h)<input id="truckMaint" type="number" step="10000" value="4000000"></label>
+<label>تایر/مصرفی کامیون (IRR/h)<input id="truckTyre" type="number" step="10000" value="2000000"></label>
+<label>راننده (IRR/h)<input id="truckLabor" type="number" step="10000" value="800000"></label>
+<label>مالکیت سالانه هر کامیون (IRR/y)<input id="truckOwnership" type="number" step="1000000000" value="35000000000"></label>
+</div></section>
+
+<section class="panel" id="support"><h2>۷) عملیات جانبی، خدمات فنی و هزینه‌های ثابت</h2>
+<h3>هزینه‌های متغیر</h3><div class="grid">
+<label>دامپینگ/دوزینگ باطله (IRR/t waste)<input id="wasteDumpRate" type="number" step="1000" value="80000"></label>
+<label>دپو/ری‌هندل کانسنگ (IRR/t ore)<input id="oreStockpileRate" type="number" step="1000" value="50000"></label>
+<label>راه‌سازی، گریدر و آبپاشی (IRR/t moved)<input id="roadWaterRate" type="number" step="1000" value="35000"></label>
+<label>کنترل عیار/نمونه‌برداری (IRR/t ore)<input id="gradeControlRate" type="number" step="1000" value="30000"></label>
+<label>نقشه‌برداری و ژئوتکنیک (IRR/t moved)<input id="surveyRate" type="number" step="1000" value="20000"></label>
+<label>خدمات کارگاه/روغنکاری متغیر (IRR/t moved)<input id="workshopVariable" type="number" step="1000" value="25000"></label>
+</div>
+<h3>هزینه‌های ثابت سالانه</h3><div class="grid">
+<label>آبکشی/زهکشی (IRR/y)<input id="dewatering" type="number" step="1000000000" value="40000000000"></label>
+<label>برنامه‌ریزی معدن/دفتر فنی (IRR/y)<input id="minePlanning" type="number" step="1000000000" value="70000000000"></label>
+<label>HSE و امداد (IRR/y)<input id="hse" type="number" step="1000000000" value="45000000000"></label>
+<label>محیط‌زیست و پایش (IRR/y)<input id="environment" type="number" step="1000000000" value="20000000000"></label>
+<label>کارگاه و پشتیبانی ثابت (IRR/y)<input id="workshopFixed" type="number" step="1000000000" value="60000000000"></label>
+<label>کمپ/حفاظت/ارتباطات (IRR/y)<input id="securityCamp" type="number" step="1000000000" value="30000000000"></label>
+<label>اداری و سربار معدن (IRR/y)<input id="gna" type="number" step="1000000000" value="80000000000"></label>
+<label>ذخیره بازسازی/بستن معدن (IRR/y)<input id="rehab" type="number" step="1000000000" value="25000000000"></label>
+<label>حقوق دولتی/عوارض اختیاری (IRR/y)<input id="statutory" type="number" step="1000000000" value="0"></label>
+</div></section>
+
+<section class="panel" id="rates"><h2>۸) نرخ‌های پایه، منشأ و وضعیت اعتبار</h2>
+<div class="grid">
+<label>قیمت سوخت (IRR/L)<input id="fuelPrice" type="number" step="1000" value="100000"></label>
+<label>قیمت ماده منفجره (IRR/kg)<input id="explosiveRate" type="number" step="10000" value="1800000"></label>
+<label>تاریخ مبنای نرخ‌ها<input id="rateDate" type="date" value="2026-09-12"></label>
+<label>واحد پول<select id="currency"><option>IRR</option><option>USD</option><option>EUR</option></select></label>
+<label>وضعیت منبع سوخت<select id="fuelStatus"><option value="scenario" selected>Scenario / تأییدنشده</option><option value="verified">Verified</option><option value="expired">Expired</option></select></label>
+<label>وضعیت منبع مواد انفجاری<select id="explosiveStatus"><option value="scenario" selected>Scenario / تأییدنشده</option><option value="verified">Verified</option><option value="expired">Expired</option></select></label>
+<label>وضعیت نرخ تجهیزات<select id="equipmentStatus"><option value="scenario" selected>Scenario / تأییدنشده</option><option value="verified">Verified</option><option value="expired">Expired</option></select></label>
+<label>وضعیت هزینه‌های ثابت<select id="fixedStatus"><option value="scenario" selected>Scenario / تأییدنشده</option><option value="verified">Verified</option><option value="expired">Expired</option></select></label>
+<label class="full">مرجع/توضیح نرخ‌ها<textarea id="rateSource" rows="2">اعداد اولیه صرفاً برای تست نرم‌افزار هستند و از منبع بازار واقعی اخذ نشده‌اند.</textarea></label>
+</div></section>
+
+<section class="panel"><div class="actions"><button class="green" onclick="runCalc()">محاسبه کامل پایلوت</button><button onclick="saveScenario()">ذخیره در مرورگر</button><button class="secondary" onclick="loadScenario()">بازیابی</button><button class="secondary" onclick="exportJSON()">خروجی JSON</button><button class="secondary" onclick="window.print()">چاپ / PDF</button></div></section>
+
+<section class="panel" id="results"><h2>۹) خروجی محاسبات و کنترل فنی</h2>
+<div id="qaStatus" class="status hold">برای محاسبه، دکمه «محاسبه کامل پایلوت» را بزنید.</div><div id="qaNotes" class="section-note"></div>
+<div class="kpis" style="margin-top:12px">
+<div class="kpi"><div class="l">هزینه استخراج به ازای تن کانسنگ</div><div class="v" id="kUnitOre">—</div></div>
+<div class="kpi"><div class="l">هزینه به ازای تن کل جابه‌جایی</div><div class="v" id="kUnitMoved">—</div></div>
+<div class="kpi"><div class="l">کل هزینه سالانه</div><div class="v" id="kTotal">—</div></div>
+<div class="kpi"><div class="l">کل تناژ جابه‌جایی</div><div class="v" id="kMoved">—</div></div>
+<div class="kpi"><div class="l">ناوگان کامیون برآوردی</div><div class="v" id="kTrucks">—</div></div>
+</div>
+<h3>شاخص‌های عملیاتی</h3><div class="tablewrap"><table><tbody id="opsTable"></tbody></table></div>
+<h3>شکست هزینه سالانه</h3><div class="tablewrap"><table><thead><tr><th>گروه هزینه</th><th>هزینه سالانه</th><th>IRR/t ore</th><th>سهم از کل</th><th>نمایش</th></tr></thead><tbody id="costTable"></tbody></table></div>
+<h3>Traceability نرخ‌ها</h3><div class="tablewrap"><table><thead><tr><th>حوزه</th><th>مقدار/مرجع</th><th>وضعیت</th><th>اثر بر Gate</th></tr></thead><tbody id="traceTable"></tbody></table></div>
+</section>
+
+<section class="panel" id="sensitivity"><h2>۱۰) تحلیل حساسیت یک‌متغیره</h2>
+<div class="grid2"><label>دامنه تغییر هر پارامتر ± (%)<input id="sensPct" type="number" min="1" max="50" value="20"></label><div class="okbox">خروجی حساسیت: اثر تغییر هر عامل بر «هزینه استخراج به ازای هر تن کانسنگ». سایر عوامل ثابت نگه داشته می‌شوند.</div></div>
+<div id="sensitivityRows" style="margin-top:12px"></div>
+</section>
+
+<section class="panel"><h2>دامنه فعلی پایلوت و توسعه بعدی</h2><div class="muted">این نسخه تا تحویل کانسنگ در ROM/Stockpile معدن را مدل می‌کند و هزینه کارخانه فرآوری را وارد نمی‌کند. در نسخه بعدی می‌توان خردایش، آسیاکنی، جدایش مغناطیسی/فلوتاسیون، آبگیری، بازیابی متالورژیکی، انرژی کارخانه، آب، باطله کارخانه، CAPEX و قیمت تمام‌شده کنسانتره را به همین زنجیره متصل کرد.</div></section>
+<div class="footer">APR-02 / MINE SAM EXPERT — Open-Pit Iron Ore Cost Pilot — Scenario/Test Only — 2026</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);const ids=[...document.querySelectorAll('input,select,textarea')].map(x=>x.id).filter(Boolean);
+function n(id,o){if(o&&Object.prototype.hasOwnProperty.call(o,id))return Number(o[id]);return Number($(id).value)}
+function v(id,o){if(o&&Object.prototype.hasOwnProperty.call(o,id))return o[id];return $(id).value}
+function pct(id,o){return n(id,o)/100}
+function fmt(x,d=0){return Number.isFinite(x)?new Intl.NumberFormat('fa-IR',{maximumFractionDigits:d}).format(x):'—'}
+function money(x){if(!Number.isFinite(x))return'—';const a=Math.abs(x);if(a>=1e12)return fmt(x/1e12,2)+' تریلیون';if(a>=1e9)return fmt(x/1e9,2)+' میلیارد';if(a>=1e6)return fmt(x/1e6,2)+' میلیون';return fmt(x,0)}
+function getForm(){const o={};ids.forEach(id=>{const e=$(id);o[id]=e.type==='number'?Number(e.value):e.value});return o}
+function calc(o={}){
+ const ore=Math.max(0,n('oreTpy',o)),sr=Math.max(0,n('stripRatio',o)),waste=ore*sr,totalT=ore+waste;
+ const od=Math.max(.01,n('oreDensity',o)),wd=Math.max(.01,n('wasteDensity',o));const oreVol=ore/od,wasteVol=waste/wd,totalVol=oreVol+wasteVol;
+ const days=Math.max(1,n('days',o)),shifts=Math.max(1,n('shifts',o)),hrs=Math.max(.1,n('hoursShift',o)),sched=days*shifts*hrs;
+ const fuel=Math.max(0,n('fuelPrice',o)),roadFactor=Math.max(.5,n('roadFactor',o));
+ const bh=Math.max(.1,n('benchHeight',o)),bur=Math.max(.1,n('burden',o)),spa=Math.max(.1,n('spacing',o)),sub=Math.max(0,n('subdrill',o));
+ const holeLen=bh+sub,volPerHole=bur*spa*bh;const holesOre=oreVol/volPerHole,holesWaste=wasteVol/volPerHole;const drillM=(holesOre+holesWaste)*holeLen*Math.max(.5,n('drillBlastFactor',o));
+ const pen=Math.max(.1,n('drillPenetration',o));const drillOpH=drillM/pen;const drillEffH=sched*Math.max(.01,pct('drillAvail',o))*Math.max(.01,pct('drillUtil',o));const drillCount=Math.max(1,Math.ceil(drillOpH/drillEffH));
+ const drillHourly=n('drillFuel',o)*fuel+n('drillMaint',o)+n('drillLabor',o);const drillCost=drillOpH*drillHourly+drillCount*n('drillOwnership',o);
+ const explKg=ore*Math.max(0,n('pfOre',o))+waste*Math.max(0,n('pfWaste',o));const blastExplosive=explKg*n('explosiveRate',o);const blastOther=totalT*(n('blastAccessories',o)+n('chargingRate',o));const blasting=blastExplosive+blastOther;
+ const bucket=Math.max(.1,n('bucket',o)),fill=Math.max(.1,n('fillFactor',o)),cycle=Math.max(1,n('loaderCycle',o));const loaderCycles=totalVol/(bucket*fill);const loaderOpH=loaderCycles*cycle/3600;const loaderEffH=sched*Math.max(.01,pct('loaderAvail',o))*Math.max(.01,pct('loaderUtil',o));const loaderCount=Math.max(1,Math.ceil(loaderOpH/loaderEffH));const loaderHourly=n('loaderFuel',o)*fuel+n('loaderMaint',o)+n('loaderLabor',o);const loading=loaderOpH*loaderHourly+loaderCount*n('loaderOwnership',o);
+ const payload=Math.max(.1,n('truckPayload',o)*Math.max(.1,n('payloadFactor',o)));const common=(n('truckLoadMin',o)+n('dumpMin',o)+n('queueMin',o))/60;
+ function haulHours(t,dist,ls,es){const tripH=common+(dist/Math.max(1,ls))+(dist/Math.max(1,es));return (t/payload)*tripH*roadFactor}
+ const oreHaulH=haulHours(ore,n('oreHaulKm',o),n('oreLoadedSpeed',o),n('oreEmptySpeed',o));const wasteHaulH=haulHours(waste,n('wasteHaulKm',o),n('wasteLoadedSpeed',o),n('wasteEmptySpeed',o));const truckOpH=oreHaulH+wasteHaulH;const truckEffH=sched*Math.max(.01,pct('truckAvail',o))*Math.max(.01,pct('truckUtil',o));const truckCount=Math.max(1,Math.ceil(truckOpH/truckEffH));const truckHourly=n('truckFuel',o)*fuel+n('truckMaint',o)+n('truckTyre',o)+n('truckLabor',o);const hauling=truckOpH*truckHourly+truckCount*n('truckOwnership',o);
+ const dumping=waste*n('wasteDumpRate',o)+ore*n('oreStockpileRate',o);const road=totalT*n('roadWaterRate',o);const grade=ore*n('gradeControlRate',o);const survey=totalT*n('surveyRate',o);const workshopVar=totalT*n('workshopVariable',o);
+ const fixedBase=n('dewatering',o)+n('minePlanning',o)+n('hse',o)+n('environment',o)+n('workshopFixed',o)+n('securityCamp',o)+n('gna',o)+n('rehab',o)+n('statutory',o);const fixed=fixedBase*(o.fixedFactor??1);
+ const costs={"حفاری":drillCost,"آتشباری":blasting,"بارگیری":loading,"حمل":hauling,"دامپ/دپو":dumping,"راه و کنترل گردوغبار":road,"کنترل عیار":grade,"نقشه‌برداری/ژئوتکنیک":survey,"خدمات کارگاه متغیر":workshopVar,"هزینه‌های ثابت و سربار":fixed};
+ const totalCost=Object.values(costs).reduce((a,b)=>a+b,0);return{ore,waste,totalT,oreVol,wasteVol,totalVol,drillM,drillOpH,drillCount,explKg,loaderOpH,loaderCount,oreHaulH,wasteHaulH,truckOpH,truckCount,costs,totalCost,unitOre:totalCost/Math.max(1,ore),unitMoved:totalCost/Math.max(1,totalT),unitBCM:totalCost/Math.max(1,totalVol),payload,sched};
+}
+function statusPill(s){return s==='verified'?'<span class="pill verified">Verified</span>':s==='expired'?'<span class="pill" style="background:#5b2430;color:#ffd6dc">Expired</span>':'<span class="pill scenario">Scenario</span>'}
+function runCalc(){
+ const r=calc();const issues=[];if(n('oreTpy')<=0)issues.push('تولید کانسنگ باید مثبت باشد.');if(n('oreDensity')<=0||n('wasteDensity')<=0)issues.push('چگالی‌ها باید مثبت باشند.');if(n('oreGrade')<=0||n('oreGrade')>100)issues.push('عیار Fe خارج از دامنه منطقی است.');if(n('drillAvail')>100||n('truckAvail')>100||n('loaderAvail')>100)issues.push('Availability نمی‌تواند بیش از ۱۰۰٪ باشد.');if(n('drillUtil')>100||n('truckUtil')>100||n('loaderUtil')>100)issues.push('Utilization نمی‌تواند بیش از ۱۰۰٪ باشد.');
+ const src=['fuelStatus','explosiveStatus','equipmentStatus','fixedStatus'].map(x=>$(x).value);const allVerified=src.every(x=>x==='verified');const expired=src.some(x=>x==='expired');const qs=$('qaStatus');if(issues.length){qs.textContent='FAIL — خطای ورودی';qs.className='status fail'}else if(expired){qs.textContent='HOLD — حداقل یک منبع نرخ منقضی است';qs.className='status hold'}else if(!allVerified){qs.textContent='SCENARIO / HOLD — محاسبه انجام شد، اما نرخ‌های مبنا تأیید نشده‌اند';qs.className='status hold'}else{qs.textContent='INPUTS VALIDATED — کنترل ورودی و منبع عبور کرد؛ این وضعیت به معنی تأیید کارشناسی/قیمت نیست';qs.className='status pass'}
+ $('qaNotes').textContent=issues.join(' | ')||'محاسبات بر مبنای داده‌های همین فرم انجام شد. همه فرض‌ها و نرخ‌ها باید برای استفاده واقعی با سند معتبر جایگزین شوند.';
+ $('kUnitOre').textContent=fmt(r.unitOre,0)+' IRR/t';$('kUnitMoved').textContent=fmt(r.unitMoved,0)+' IRR/t';$('kTotal').textContent=money(r.totalCost)+' IRR';$('kMoved').textContent=fmt(r.totalT,0)+' t/y';$('kTrucks').textContent=fmt(r.truckCount,0);
+ const ops=[["کانسنگ سالانه",fmt(r.ore,0)+' t'],["باطله سالانه",fmt(r.waste,0)+' t'],["حجم کل جابه‌جایی",fmt(r.totalVol,0)+' m³'],["حفاری موردنیاز",fmt(r.drillM,0)+' m/y'],["تعداد حفار",fmt(r.drillCount,0)],["مصرف ماده منفجره",fmt(r.explKg,0)+' kg/y'],["ساعت عملیاتی بارکن",fmt(r.loaderOpH,0)+' h/y'],["تعداد بارکن",fmt(r.loaderCount,0)],["ساعت حمل کانسنگ",fmt(r.oreHaulH,0)+' h/y'],["ساعت حمل باطله",fmt(r.wasteHaulH,0)+' h/y'],["ساعت عملیاتی کامیون‌ها",fmt(r.truckOpH,0)+' h/y'],["تعداد کامیون",fmt(r.truckCount,0)],["هزینه بر m³ کل",fmt(r.unitBCM,0)+' IRR/m³']];$('opsTable').innerHTML=ops.map(x=>`<tr><th>${x[0]}</th><td class="num">${x[1]}</td></tr>`).join('');
+ const max=Math.max(...Object.values(r.costs));$('costTable').innerHTML=Object.entries(r.costs).map(([k,val])=>`<tr><td>${k}</td><td class="num">${fmt(val,0)}</td><td class="num">${fmt(val/r.ore,0)}</td><td class="num">${fmt(100*val/r.totalCost,1)}%</td><td><div class="bar"><i style="width:${100*val/max}%"></i></div></td></tr>`).join('');
+ const trace=[["سوخت",$('fuelPrice').value+' IRR/L · '+$('rateSource').value,statusPill($('fuelStatus').value),$('fuelStatus').value==='verified'?'PASS':'HOLD'],["مواد انفجاری",$('explosiveRate').value+' IRR/kg',statusPill($('explosiveStatus').value),$('explosiveStatus').value==='verified'?'PASS':'HOLD'],["تجهیزات",'Ownership + O&M inputs',statusPill($('equipmentStatus').value),$('equipmentStatus').value==='verified'?'PASS':'HOLD'],["ثابت/سربار",'Annual fixed-cost inputs',statusPill($('fixedStatus').value),$('fixedStatus').value==='verified'?'PASS':'HOLD']];$('traceTable').innerHTML=trace.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td><td>${x[2]}</td><td>${x[3]}</td></tr>`).join('');renderSensitivity(r);return r;
+}
+function renderSensitivity(base){const p=Math.max(1,Math.min(50,n('sensPct')))/100;const tests=[['نسبت باطله‌برداری','stripRatio',n('stripRatio')],['فاصله حمل باطله','wasteHaulKm',n('wasteHaulKm')],['قیمت سوخت','fuelPrice',n('fuelPrice')],['قیمت ماده منفجره','explosiveRate',n('explosiveRate')],['هزینه تعمیر کامیون','truckMaint',n('truckMaint')],['زمان صف حمل','queueMin',n('queueMin')],['ظرفیت کامیون','truckPayload',n('truckPayload')],['هزینه‌های ثابت','fixedFactor',1]];const rows=tests.map(([name,key,val])=>{let low={},high={};low[key]=val*(1-p);high[key]=val*(1+p);const a=calc(low).unitOre,b=calc(high).unitOre;const lo=(a-base.unitOre)/base.unitOre*100,hi=(b-base.unitOre)/base.unitOre*100;return{name,lo,hi,impact:Math.max(Math.abs(lo),Math.abs(hi))}}).sort((a,b)=>b.impact-a.impact);const m=Math.max(...rows.map(x=>x.impact),1);$('sensitivityRows').innerHTML=rows.map(x=>`<div class="sensrow"><b>${x.name}</b><div class="bar"><i style="width:${Math.min(100,100*x.impact/m)}%"></i></div><div class="num">-${Math.round(p*100)}%: ${x.lo>=0?'+':''}${fmt(x.lo,1)}%</div><div class="num">+${Math.round(p*100)}%: ${x.hi>=0?'+':''}${fmt(x.hi,1)}%</div></div>`).join('')}
+function saveScenario(){localStorage.setItem('APR02_IRON_ORE_PILOT',JSON.stringify(getForm()));alert('سناریو در همین مرورگر ذخیره شد.')}
+function loadScenario(){const s=localStorage.getItem('APR02_IRON_ORE_PILOT');if(!s)return alert('سناریوی ذخیره‌شده‌ای پیدا نشد.');const o=JSON.parse(s);Object.entries(o).forEach(([id,val])=>{if($(id))$(id).value=val});runCalc()}
+function exportJSON(){const data={meta:{project:'APR-02 MINE SAM EXPERT',pilot:'Open-Pit Iron Ore Cost',generated_at:new Date().toISOString(),classification:'SCENARIO_TEST_ONLY'},inputs:getForm(),outputs:calc()};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='APR02_iron_ore_open_pit_pilot.json';a.click();URL.revokeObjectURL(a.href)}
+$('inputMode').addEventListener('change',()=>{$('docBox').classList.toggle('hidden',$('inputMode').value==='manual')});$('docBox').classList.add('hidden');$('docFile').addEventListener('change',()=>{if($('docFile').files[0])$('sourcePage').value='فایل انتخاب‌شده: '+$('docFile').files[0].name+' — پردازش AI در این پایلوت فعال نیست'});$('sensPct').addEventListener('change',()=>runCalc());
+runCalc();
+</script>
+</body></html>
